@@ -155,6 +155,68 @@ function App() {
     setPasswordExercise3("");  // Limpiamos el campo después de un envío exitoso
   };
 
+  {/* EJERCICIO 4 */}
+
+  const [nameExercise4, setNameExercise4] = useState("");
+  const [emailExercise4, setEmailExercise4] = useState("");
+  const [errorCombinedExercise4, setErrorCombinedExercise4] = useState("");
+  
+  const handleChangeNameExercise4 = (e) => {
+    setNameExercise4(e.target.value);
+    
+    if (errorCombinedExercise4) {
+      setErrorCombinedExercise4("");
+    }
+  };
+
+  const handleChangeEmailExercise4 = (e) => {
+    setEmailExercise4(e.target.value);
+
+    if (errorCombinedExercise4) {
+      setErrorCombinedExercise4("");
+    }
+  };
+
+  //Crear funcion para manejo de envios
+
+  const handleSubmitExercise4 = (e) => {
+    e.preventDefault();
+
+    let errors = [];
+
+    //validar nombre
+
+    if (!nameExercise4.trim()) {
+      errors.push("El nombre es obligatorio");
+    }
+    {/*El método .push pertenece a los arrays en JavaScript y se utiliza para agregar un nuevo elemento al final del array. */}
+
+    //validar correo  
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailExercise4)) {
+      errors.push("El correo ingresado no es valido");
+    }
+
+    //Si hay errores, mostramos un mensaje combinado
+    
+    {/* En este ejercicio, después de llenar el array errors con mensajes de error, necesitamos mostrarlos como un único mensaje en la interfaz. */}
+    if (errors.length > 0) {
+      setErrorCombinedExercise4(errors.join(" "));
+      return;
+  }
+ 
+  //Si no hay errores, mostramos un mensaje de exito
+
+  alert ("Formulario enviado con exito");
+  setNameExercise4("");
+  setEmailExercise4("");
+};
+
+  {/* En este ejemplko usamo un array errors para acumular errores de validacion
+    
+  si errors tiene elementos, los unimos con join (" ") y los mostramos en el estado errorCombinedExercise4 
+  */}
   
 
      
@@ -246,7 +308,7 @@ function App() {
         </form>
 
       </div>
-      
+
       <div> {/*EJERCICIO 3 */}
         <h2>Ejercicio 3: Validacion de Contraseña</h2>
 
@@ -265,6 +327,30 @@ function App() {
           <button onClick={handleSubmitExercise3}>Enviar Contraseña</button>
           </div>
       </div>
+
+
+      <div> {/*EJERCICIO 4 */}
+        <h2>Ejercicio 4: Validacion de Nombre y Correo</h2>
+        <input 
+          type="text"
+          value={nameExercise4}
+          onChange={handleChangeNameExercise4}
+          placeholder="Ingresa tu nombre"
+        />
+
+        <input
+          type="text"
+          value={emailExercise4}
+          onChange={handleChangeEmailExercise4}
+          placeholder="Ingresa tu correo"
+        />
+
+        {errorCombinedExercise4 && <p style={{ color: "red" }}>{errorCombinedExercise4}</p>}
+
+        <button onClick={handleSubmitExercise4}>Enviar</button>
+      </div>
+
+
 
       
  
