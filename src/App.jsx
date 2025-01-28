@@ -217,9 +217,23 @@ function App() {
     
   si errors tiene elementos, los unimos con join (" ") y los mostramos en el estado errorCombinedExercise4 
   */}
-  
 
-     
+
+
+  {/* EJERCICIO 5 */}
+
+  {/*Paso 1: Creamos los estados para almacenar valor del campo y otro para limite maximo */}
+
+  const [textExercise5, setTextExercise5] = useState("");
+  const maxCharsExercise5 = 10; //limite maximo de caracteres
+
+ // Paso 2 y 4: Creamos una función que actualice el estado y valide el límite máximo
+const handleChangeExercise5 = (e) => {
+  // Validamos que la longitud del texto no exceda el límite
+  if (e.target.value.length <= maxCharsExercise5) {
+    setTextExercise5(e.target.value);
+  }
+};
 
   
 
@@ -331,23 +345,39 @@ function App() {
 
       <div> {/*EJERCICIO 4 */}
         <h2>Ejercicio 4: Validacion de Nombre y Correo</h2>
-        <input 
-          type="text"
-          value={nameExercise4}
-          onChange={handleChangeNameExercise4}
-          placeholder="Ingresa tu nombre"
-        />
+        <div style={{ maxWidth: "400px", margin: "50px auto", }}>
+          <input
+            type="text"
+            value={nameExercise4}
+            onChange={handleChangeNameExercise4}
+            placeholder="Ingresa tu nombre"
+          />
+          <input
+            type="text"
+            value={emailExercise4}
+            onChange={handleChangeEmailExercise4}
+            placeholder="Ingresa tu correo"
+          />
+          {errorCombinedExercise4 && <p style={{ color: "red" }}>{errorCombinedExercise4}</p>}
+          <button onClick={handleSubmitExercise4}>Enviar</button>
+        </div>
+      </div>
 
-        <input
-          type="text"
-          value={emailExercise4}
-          onChange={handleChangeEmailExercise4}
-          placeholder="Ingresa tu correo"
-        />
+      <div> {/*EJERCICIO 5 */}
+      {/* Paso 3: Mostrar el contador dinamico: usamos length para calcular los caracteres restantes y mostrar en el contador */}
+        <h2>Ejercicio 5: Contador dinámico de caracteres</h2>
+        <div style={{ maxWidth: "400px", margin: "50px auto", }}>
+          <input
+            type="text"
+            value={textExercise5}
+            onChange={handleChangeExercise5} // Usamos la función única
+            placeholder="Escribe algo..."
+          />
+        
+          <p>{textExercise5.length} / {maxCharsExercise5} caracteres usados</p>
+          <p>{maxCharsExercise5 - textExercise5.length} caracteres restantes</p>
+        </div>
 
-        {errorCombinedExercise4 && <p style={{ color: "red" }}>{errorCombinedExercise4}</p>}
-
-        <button onClick={handleSubmitExercise4}>Enviar</button>
       </div>
 
 
