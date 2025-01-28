@@ -69,6 +69,42 @@ function App() {
     setNameExercise1("");
   }
 
+  {/* EJERCICIO 2 */}
+  {/* Creamos los estados para almacenar entradas y errores */}
+  const [emailExercise2, setEmailExercise2] = useState("");
+  const [errorEmailExercise2, setErrorEmailExercise2] = useState (""); 
+
+  {/* Creamos el manejador de cambios para el input */}
+  const handleChangeExercise2 = (e) => { 
+    setEmailExercise2(e.target.value);
+    if (errorEmailExercise2) setErrorEmailExercise2("");
+  };
+
+  {/* Creamos el manejador de envio del formulario */}
+  const handleSubmitEmailExercise2 = (e) => {
+    e.preventDefault();
+
+  //Expresion regular para valida correos electronicos
+   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailExercise2.trim()) {
+    setErrorEmailExercise2("El correo no puede estar vacío");
+    return;
+  }
+
+  if (!emailRegex.test(emailExercise2)) {
+    setErrorEmailExercise2("El correo ingresado no es valido");
+    return;
+  }
+
+  alert (`¡Correo valido! Correo ingresado: ${emailExercise2}`);
+  setEmailExercise2("");
+  };
+  
+
+     
+
+  
 
   return (
     <div>
@@ -132,9 +168,29 @@ function App() {
             }
           </div>
           <button type="submit">Enviar</button>
-
         </form>
-        
+      </div>
+
+      <div> {/*EJERCICIO 2 */}
+        <h2>Ejercicio 2: Validacion de Correo</h2>
+        <form onSubmit={handleSubmitEmailExercise2}>
+          <div style={{ marginBottom: "20px" }}>
+            <label htmlFor="emailExercise2">Correo:</label>
+            <input 
+              type="text"
+              id="emailExercise2"
+              name="emailExercise2"
+              value={emailExercise2}
+              onChange={handleChangeExercise2}
+              placeholder="Ingresa tu correo"
+            />
+            {errorEmailExercise2 && <p style={{ color: "red" }}>{errorEmailExercise2}</p>}
+
+          </div>
+          <button type="submit">Validar Correo</button>
+        </form>
+
+
       </div>
  
     </div>
