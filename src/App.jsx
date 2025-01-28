@@ -235,6 +235,38 @@ const handleChangeExercise5 = (e) => {
   }
 };
 
+{/* EJERCICIO 6 */}
+
+// Paso 1: Definir los estados iniciales y los estados actuales del formulario
+const initialFormStateExercise6 = {
+  name: "",
+  email: "",
+  password: "",
+};
+
+const initialErrorsStateExercise6 = {
+  name: "",
+  email: "",
+  password: "",
+};
+
+const [formExercise6, setFormExercise6] = useState(initialFormStateExercise6);
+const [errorsExercise6, setErrorsExercise6] = useState(initialErrorsStateExercise6);
+
+// Paso 2: Manejador para actualizar los valores del formulario
+const handleChangeExercise6 = (e) => {
+  const { name, value } = e.target;
+  setFormExercise6((prevState) => ({
+    ...prevState,
+    [name]: value,
+  }));
+};
+
+// Paso 3: Manejador para restablecer el formulario
+const handleResetExercise6 = () => {
+  setFormExercise6(initialFormStateExercise6);
+  setErrorsExercise6(initialErrorsStateExercise6);
+};
   
 
   return (
@@ -380,11 +412,46 @@ const handleChangeExercise5 = (e) => {
 
       </div>
 
+      <div>
+    <h2>Ejercicio 6: Botón de reset para limpiar formulario</h2>
+    <form>
+      <div>
+        <label>Nombre:</label>
+        <input
+          type="text"
+          name="name"
+          value={formExercise6.name}
+          onChange={handleChangeExercise6}
+        />
+        {errorsExercise6.name && <p>{errorsExercise6.name}</p>}
+      </div>
+      <div>
+        <label>Correo:</label>
+        <input
+          type="email"
+          name="email"
+          value={formExercise6.email}
+          onChange={handleChangeExercise6}
+        />
+        {errorsExercise6.email && <p>{errorsExercise6.email}</p>}
+      </div>
+      <div>
+        <label>Contraseña:</label>
+        <input
+          type="password"
+          name="password"
+          value={formExercise6.password}
+          onChange={handleChangeExercise6}
+        />
+        {errorsExercise6.password && <p>{errorsExercise6.password}</p>}
+      </div>
+      <button type="button" onClick={handleResetExercise6}>
+        Limpiar
+      </button>
+    </form>
+  </div>
 
-
-      
- 
-    </div>
+  </div>
   );
 }
 
