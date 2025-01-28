@@ -86,6 +86,28 @@ function App() {
 
   //Expresion regular para valida correos electronicos
    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+   {/*
+    /^ y $
+    ^: Marca el incio de la cadena
+    $: Marca el final de la cadena
+
+    [^\s@]+
+    [ ]: Define el conjunto de caracteres que se aceptan
+     ^ dentro de []: niega el conjunto, es decir permite todo excepto lo que sigue.
+     \s: Espacios en blanco.
+     @: Caracter @
+     +: Repetir 1 o mas veces
+
+     En conjunto, [^\s@]+ significa:
+     "Cualquier combinación de caracteres, excepto espacios y el símbolo arroba, repetida una o más veces."
+
+     ejemplos invalidos: 
+     @gmail.com
+     usuario@dominio
+     usuario@@dominio.com
+     usuario dominio.com
+
+    */}
 
   if (!emailExercise2.trim()) {
     setErrorEmailExercise2("El correo no puede estar vacío");
@@ -100,6 +122,39 @@ function App() {
   alert (`¡Correo valido! Correo ingresado: ${emailExercise2}`);
   setEmailExercise2("");
   };
+
+  {/* EJERCICIO 3 */}
+
+  {/* Creamos los estados para almacenar entradas y errores */}
+
+  const [passwordExercise3, setPasswordExercise3] = useState ("");
+  const [errorPasswordExercise3, setErrorPasswordExercise3] = useState("");
+
+  {/* Crear la funcion para manejar cambios en el campo de la contraseña */}
+
+  const handleChangeExercise3 = (e) => {
+    setPasswordExercise3(e.target.value);
+
+    //limpiar el error si ya existe uno
+    if (errorPasswordExercise3) {
+      setErrorExercise3("");
+    }
+  };
+
+  {/* Creamos el manejador de envio del formulario */}
+
+  const handleSubmitExercise3 = (e) => {
+    e.preventDefault();
+
+    if (passwordExercise3.length < 6) {
+      setErrorPasswordExercise3("La contraseña debe tener al menos 6 caracteres");
+      return;
+    }
+
+    alert ("Contraseña enviada con exito");
+    setPasswordExercise3("");  // Limpiamos el campo después de un envío exitoso
+  };
+
   
 
      
@@ -190,8 +245,28 @@ function App() {
           <button type="submit">Validar Correo</button>
         </form>
 
-
       </div>
+      
+      <div> {/*EJERCICIO 3 */}
+        <h2>Ejercicio 3: Validacion de Contraseña</h2>
+
+        <div style={{ maxWidth: "400px", margin: "50px auto", }}>
+          <label htmlFor ="passwordExercise3">Contraseña</label>
+          <input
+            type="password"
+            value={passwordExercise3}
+            onChange={handleChangeExercise3}
+            placeholder="Contraseña"
+          />
+        
+
+          {errorPasswordExercise3 && <p style={{ color: "red" }}>{errorPasswordExercise3}</p>}
+
+          <button onClick={handleSubmitExercise3}>Enviar Contraseña</button>
+          </div>
+      </div>
+
+      
  
     </div>
   );
