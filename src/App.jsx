@@ -267,7 +267,28 @@ const handleResetExercise6 = () => {
   setFormExercise6(initialFormStateExercise6);
   setErrorsExercise6(initialErrorsStateExercise6);
 };
-  
+
+
+{/*Ejercico 7 
+  Funcionalidad del ejercicio 6 
+   funcionalidad que deshabilite el botón de envío si alguno
+   de los campos del formulario contiene errores o si están vacíos.
+   */}
+
+   // 1: Crear funcion que valide si los campos estan completos y sin errores
+
+   const isFormValidExercise7 = () => {
+    return (
+      formExercise6.name.trim() !== "" &&
+      formExercise6.email.trim() !== "" &&
+      formExercise6.password.trim() !== "" &&
+      errorsExercise6.name === "" &&
+      errorsExercise6.email === "" &&
+      errorsExercise6.password === ""   
+    ) 
+  };  
+    
+    //  
 
   return (
     <div>
@@ -449,7 +470,63 @@ const handleResetExercise6 = () => {
         Limpiar
       </button>
     </form>
+
+    <div> {/*EJERCICIO 7 */}
+      <div>
+        <form>
+          <div>
+            <label>Nombre:</label>
+            <input 
+              type="text"
+              name="name"
+              value={formExercise6.name}
+              onChange={handleChangeExercise6}
+            />
+            {errorsExercise6.name && <p>{errorsExercise6.name}</p>}
+          </div>
+
+
+          <div>
+            <label>Correo:</label>
+            <input 
+            type="email" n
+            name="email"
+            value={formExercise6.email}
+            onChange={handleChangeExercise6}
+            />
+            {errorsExercise6.email && <p>{errorsExercise6.email}</p>}
+
+          </div>
+
+
+          <div>
+            <label>Contraseña:</label>
+            <input 
+            type="password"
+            name="password"
+            value={formExercise6.password}
+            onChange={handleChangeExercise6}
+            />
+            {errorsExercise6.password && <p>{errorsExercise6.password}</p>}
+          </div>
+          <button type="submit" disabled={!isFormValidExercise7()}>Enviar
+
+          </button>
+
+
+
+
+
+
+
+        </form>
+
+
+      </div> {/* Cierre div/Ejericicio 7 */}
+            
+    </div> {/* Cierre EJERCICIO 7 */}
   </div>
+
 
   </div>
   );
