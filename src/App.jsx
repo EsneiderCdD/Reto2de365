@@ -287,8 +287,19 @@ const handleResetExercise6 = () => {
       errorsExercise6.password === ""   
     ) 
   };  
+
+  {/* Ejercicio 8:*/}
     
-    //  
+  // Paso 1 crear el estado para almacenar el texto
+
+  const [textEcercise8, setTextExercise8] = useState("");
+
+  // Paso 2: Manejador para actualizar el texto
+  const handleChangeExercise8 = (e) => {
+    setTextExercise8(e.target.value);
+
+  };
+  
 
   return (
     <div>
@@ -514,17 +525,32 @@ const handleResetExercise6 = () => {
           </button>
 
 
-
-
-
-
-
         </form>
 
 
       </div> {/* Cierre div/Ejericicio 7 */}
             
     </div> {/* Cierre EJERCICIO 7 */}
+
+    <div> {/*Ejercicio 8*/}
+      <div>
+        <h2>
+          Ejercicio 8 : Contador de Caracteres
+        </h2>
+        <input
+          type="text"
+          name="text"
+          value={textEcercise8}
+          onChange={handleChangeExercise8}
+        />
+      </div>
+      
+      <div>
+        <p>Caracteres ingresados: {textEcercise8.length}</p>
+      </div>
+
+      
+    </div>
   </div>
 
 
