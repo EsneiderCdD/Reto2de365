@@ -299,7 +299,22 @@ const handleResetExercise6 = () => {
     setTextExercise8(e.target.value);
 
   };
-  
+
+  {/* Ejercicio 9 */}
+
+  //Crear estados necesarios
+  const [textExercise9, setTextExercise9] = useState("");
+  const maxCharsExercise9 = 10;
+
+  const handleChangeExercise9 = (e) => {
+    if (e.target.value.length <= maxCharsExercise9) {
+      setTextExercise9(e.target.value);
+    }
+  };
+
+  // Definir la logica del color de advertencia
+
+  const warningColor = textExercise9.length >= 8 ? "red" : "black";
 
   return (
     <div>
@@ -550,6 +565,25 @@ const handleResetExercise6 = () => {
       </div>
 
       
+    </div>
+
+
+    <div> {/*Ejercicio 9*/}
+
+      <div>
+        <div>
+      
+        <input
+          type="text"
+          value={textExercise9}
+          onChange={handleChangeExercise9}
+          placeholder="Escribe aquí..."
+          style={{ color: warningColor }} // Cambia el color si se acerca al límite
+/>
+          <p>{textExercise9.length}/{maxCharsExercise9} caracteres</p>
+
+        </div>
+      </div>
     </div>
   </div>
 
