@@ -311,10 +311,37 @@ const handleResetExercise6 = () => {
       setTextExercise9(e.target.value);
     }
   };
-
   // Definir la logica del color de advertencia
-
   const warningColor = textExercise9.length >= 8 ? "red" : "black";
+
+  const [nameExercise10, setNameExercise10] = useState("");
+  const [emailExercise10, setEmailExercise10] = useState("");
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+
+  const handleChangeNameExercise10 = (e) => {
+    setNameExercise10(e.target.value);
+  };
+  
+  const handleChangeEmailExercise10 = (e) => {
+    setEmailExercise10(e.target.value);
+  };
+  
+  const handleSubmitExercise10 = (e) => {
+    e.preventDefault(); // Evitamos el comportamiento por defecto
+  
+    // Mostramos el mensaje de éxito
+    setShowSuccessMessage(true);
+  
+    // Ocultamos el mensaje y limpiamos el formulario después de 3 segundos
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+      setNameExercise10("");
+      setEmailExercise10("");
+    }, 3000);
+  };
+  
+
 
   return (
     <div>
@@ -587,6 +614,27 @@ const handleResetExercise6 = () => {
     </div>
   </div>
 
+  {/*Ejercicio 10*/}
+
+  <form onSubmit={handleSubmitExercise10}>
+  <input
+    type="text"
+    placeholder="Nombre"
+    value={nameExercise10}
+    onChange={handleChangeNameExercise10}
+  />
+  <input
+    type="email"
+    placeholder="Correo electrónico"
+    value={emailExercise10}
+    onChange={handleChangeEmailExercise10}
+  />
+  <button type="submit">Enviar</button>
+
+  {showSuccessMessage && <p style={{ color: "green" }}>¡Formulario enviado con éxito!</p>}
+</form>
+
+  
 
   </div>
   );
